@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>真理 - 发现好工具，激发创造力</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    :root {
+      --primary: #1890ff;
+      --primary-light: #e6f7ff;
+      --text: #333;
+      --bg: #f9f9fb;
+      --card: white;
+      --border: #e8e8e8;
+    }
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      font-weight: 600;
+    }
+    header p {
+      margin: 0.5rem 0 0;
+      opacity: 0.9;
+      font-size: 1.1rem;
+    }
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    .card h2 {
+      color: var(--primary);
+      margin-top: 0;
+      display: flex;
+      align-items: center;
+    }
+    .card h2::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .card p {
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--primary);
+      color: white;
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #888;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>真理</h1>
+    <p>发现好工具，激发创造力</p>
+  </header>
+
+  <main>
+    <!-- 资源导航卡片 -->
+    <div class="card" onclick="location.href='resources.html'">
+      <h2>优质资源库</h2>
+      <p>聚合考研路上发现的高效网站与工具，分类整理，永久免费。</p>
+      <span class="btn">立即查看</span>
+    </div>
+
+    <!-- AI 机器人卡片 -->
+    <div class="card" onclick="location.href='ai-chat.html'">
+      <h2>AI 智能助手</h2>
+      <p>接入 Qwen 大模型，为你解答学习、技术、生活中的各种问题。</p>
+      <span class="btn">开始聊天</span>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 真理. 由开发者用心打造.
+  </footer>
+</body>
+</html>
