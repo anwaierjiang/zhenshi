@@ -2,126 +2,141 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8" />
-  <title>真理 - 发现好工具，激发创造力</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>我的留言墙</title>
   <style>
-    :root {
-      --primary: #1890ff;
-      --primary-light: #e6f7ff;
-      --text: #333;
-      --bg: #f9f9fb;
-      --card: white;
-      --border: #e8e8e8;
-    }
     body {
-      font-family: 'Segoe UI', 'PingFang SC', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f0f2f5;
     }
-    header {
-      background: var(--primary);
-      color: white;
-      padding: 2rem 1rem;
+    h1 {
       text-align: center;
+      color: #1890ff;
+      margin-bottom: 30px;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      font-weight: 600;
+    .form-group {
+      margin: 15px 0;
     }
-    header p {
-      margin: 0.5rem 0 0;
-      opacity: 0.9;
-      font-size: 1.1rem;
-    }
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-    .card {
-      background: var(--card);
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      border: 1px solid var(--border);
-      transition: transform 0.2s;
-      cursor: pointer;
-    }
-    .card:hover {
-      transform: translateY(-4px);
-    }
-    .card h2 {
-      color: var(--primary);
-      margin-top: 0;
-      display: flex;
-      align-items: center;
-    }
-    .card h2::before {
-      content: "";
-      display: inline-block;
-      width: 8px;
-      height: 8px;
-      background: var(--primary);
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-    .card p {
-      color: #666;
-      margin-bottom: 1rem;
-    }
-    .btn {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 0.6rem 1.2rem;
-      border-radius: 6px;
-      text-decoration: none;
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #333;
       font-weight: 500;
     }
-    footer {
-      text-align: center;
-      padding: 2rem;
-      color: #888;
-      font-size: 0.9rem;
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
     }
-    @media (max-width: 768px) {
-      main {
-        grid-template-columns: 1fr;
-      }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #1890ff;
+      box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #1890ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: 500;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+    button:hover {
+      background: #0070cc;
+    }
+    #messages {
+      margin-top: 30px;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+    }
+    .message {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>真理</h1>
-    <p>发现好工具，激发创造力</p>
-  </header>
+  <h1>📝 我的留言墙</h1>
 
-  <main>
-    <!-- 资源导航卡片 -->
-    <div class="card" onclick="location.href='resources.html'">
-      <h2>优质资源库</h2>
-      <p>聚合考研路上发现的高效网站与工具，分类整理，永久免费。</p>
-      <span class="btn">立即查看</span>
-    </div>
+  <div class="form-group">
+    <label>昵称：</label>
+    <input type="text" id="name" placeholder="请输入昵称" />
+  </div>
 
-    <!-- AI 机器人卡片 -->
-    <div class="card" onclick="location.href='ai-chat.html'">
-      <h2>AI 智能助手</h2>
-      <p>接入 Qwen 大模型，为你解答学习、技术、生活中的各种问题。</p>
-      <span class="btn">开始聊天</span>
-    </div>
-  </main>
+  <div class="form-group">
+    <label>留言内容：</label>
+    <textarea id="content" rows="3" placeholder="说点什么吧..."></textarea>
+  </div>
 
-  <footer>
-    &copy; 2025 真理. 由开发者用心打造.
-  </footer>
+  <button onclick="submitMessage()">提交留言</button>
+
+  <div id="messages"></div>
+
+  <script>
+    // TODO: 替换为你的 Zeabur 后端 API 地址
+    const API_URL = 'https://your-backend.zeabur.app';
+
+    async function submitMessage() {
+      const name = document.getElementById('name').value;
+      const content = document.getElementById('content').value;
+
+      if (!name || !content) {
+        alert('请填写完整信息！');
+        return;
+      }
+
+      try {
+        const res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, content })
+        });
+
+        const data = await res.json();
+        alert(data.message);
+
+        document.getElementById('name').value = '';
+        document.getElementById('content').value = '';
+        loadMessages(); // 提交后刷新
+      } catch (error) {
+        console.error('提交失败:', error);
+        alert('提交失败，请稍后再试。');
+      }
+    }
+
+    async function loadMessages() {
+      try {
+        const res = await fetch(API_URL + '?action=list');
+        const data = await res.json();
+        const container = document.getElementById('messages');
+        container.innerHTML = '';
+
+        data.messages?.forEach(msg => {
+          const div = document.createElement('div');
+          div.className = 'message';
+          div.innerHTML = `<strong>${msg.name}</strong>（${msg.time}）：<br>${msg.content}`;
+          container.appendChild(div);
+        });
+      } catch (error) {
+        console.error('加载失败:', error);
+      }
+    }
+
+    // 页面加载时获取留言
+    loadMessages();
+  </script>
 </body>
 </html>

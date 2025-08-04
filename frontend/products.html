@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <title>我的产品 - 真理</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>真理</h1>
+    <p>发现好工具，激发创造力</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">首页</a></li>
+      <li><a href="resources.html">资源库</a></li>
+      <li><a href="products.html">我的产品</a></li>
+      <li><a href="ai-chat.html">AI 机器人</a></li>
+      <li><a href="about.html">关于我</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h2 class="section-title">我的作品</h2>
+    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">我开发的工具，希望能为你带来价值。</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-img">🛠️</div>
+        <div class="card-body">
+          <h3>网页生成器 Pro</h3>
+          <p>无需代码，输入需求即可生成专属网页。</p>
+          <div class="card-footer">
+            <span>价格：99元</span>
+          </div>
+          <button onclick="showWechat()" class="btn">微信购买</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-img">📚</div>
+        <div class="card-body">
+          <h3>考研资料整理工具</h3>
+          <p>自动归类、去重、生成复习计划。</p>
+          <div class="card-footer">
+            <span>价格：199元</span>
+          </div>
+          <button onclick="showWechat()" class="btn">微信购买</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 真理. 由开发者用心打造. <a href="about.html">联系我们</a>
+  </footer>
+
+  <script>
+    function showWechat() {
+      alert("请添加我的微信：your_wechat_id\n\n付款后我会联系您交付产品。");
+      // 这里可以弹出一个包含微信二维码的图片
+    }
+  </script>
+</body>
+</html>
